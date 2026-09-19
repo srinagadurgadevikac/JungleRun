@@ -1,0 +1,97 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root { color-scheme: dark; --background: #07110c; --foreground: #f5ecd8; --radius: 0.75rem; }
+@theme inline { --color-background: var(--background); --color-foreground: var(--foreground); --color-border: #324532; --color-ring: #d89b36; }
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body { margin: 0; background: #07110c; color: var(--foreground); font-family: Arial, Helvetica, sans-serif; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+
+.jungle-app { min-height: 100vh; overflow: hidden; background: radial-gradient(circle at 50% 10%, #173923 0%, #07110c 48%, #030706 100%); }
+.jungle-frame { position: relative; min-height: 100vh; display: grid; place-items: center; padding: 92px 24px 28px; background-image: linear-gradient(120deg, rgba(7,17,12,.86), rgba(7,17,12,.15)), url('/images/jungle-runner-forest.png'); background-size: cover; background-position: center; }
+.jungle-brand { position: absolute; top: 28px; left: 32px; color: #f7e9ca; font-size: 26px; font-weight: 900; letter-spacing: .12em; text-shadow: 0 3px 14px #000; }
+.jungle-brand span { color: #d89b36; }
+.jungle-frame__caption { position: absolute; top: 35px; right: 32px; color: #bdd3b1; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.game-stage { position: relative; width: min(100%, 480px); height: min(760px, calc(100vh - 132px)); min-height: 540px; overflow: hidden; border: 2px solid rgba(216,155,54,.8); border-radius: 28px; background: #102718; box-shadow: 0 25px 90px rgba(0,0,0,.55), 0 0 0 8px rgba(18,44,26,.65); }
+.game-stage canvas { display: block; width: 100%; height: 100%; image-rendering: auto; }
+.error-toast { position: fixed; left: 50%; bottom: 24px; z-index: 80; transform: translateX(-50%); width: min(90%, 560px); padding: 14px 18px; border: 1px solid #9c4b3c; border-radius: 12px; background: #321715; color: #ffd9cc; text-align: center; box-shadow: 0 10px 30px #0008; }
+
+@media (max-width: 640px) {
+  .jungle-frame { padding: 78px 10px 10px; }
+  .jungle-brand { top: 20px; left: 18px; font-size: 20px; }
+  .jungle-frame__caption { top: 25px; right: 18px; max-width: 120px; font-size: 9px; text-align: right; }
+  .game-stage { width: 100%; height: calc(100vh - 94px); min-height: 480px; border-radius: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+.fixed { position: fixed; }
+.inset-0 { inset: 0; }
+.z-50 { z-index: 50; }
+.z-40 { z-index: 40; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.text-center { text-align: center; }
+.text-white { color: #fff; }
+.text-gray-300 { color: #d1d5db; }
+.text-gray-400 { color: #9ca3af; }
+.text-amber-100 { color: #fef3c7; }
+.text-amber-200 { color: #fde68a; }
+.text-amber-300 { color: #fcd34d; }
+.text-amber-400 { color: #fbbf24; }
+.text-emerald-200 { color: #a7f3d0; }
+.text-emerald-300 { color: #6ee7b7; }
+.bg-black { background: #000; }
+.bg-black\/80 { background: rgb(0 0 0 / .8); }
+.bg-black\/90 { background: rgb(0 0 0 / .9); }
+.w-full { width: 100%; }
+.max-w-sm { max-width: 24rem; }
+.max-w-md { max-width: 28rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.p-4 { padding: 1rem; }
+.p-8 { padding: 2rem; }
+.mb-2 { margin-bottom: .5rem; }
+.mb-3 { margin-bottom: .75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mt-2 { margin-top: .5rem; }
+.mt-6 { margin-top: 1.5rem; }
+.gap-2 { gap: .5rem; }
+.gap-3 { gap: .75rem; }
+.gap-4 { gap: 1rem; }
+.rounded-lg { border-radius: .75rem; }
+.rounded-xl { border-radius: 1rem; }
+.font-bold { font-weight: 700; }
+.text-sm { font-size: .875rem; }
+.text-lg { font-size: 1.125rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-4xl { font-size: 2.25rem; }
+.text-5xl { font-size: 3rem; }
+.transition-all { transition: all .2s ease; }
+.overflow-hidden { overflow: hidden; }
+.grid { display: grid; }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.space-y-4 > * + * { margin-top: 1rem; }
+
+input { width: 100%; padding: .75rem 1rem; border: 2px solid #4b5563; border-radius: .75rem; background: #1f2937; color: white; }
+button { border: 0; }
+.bg-gray-900 { background: #111827; }
+.bg-gray-800 { background: #1f2937; }
+.bg-gray-700 { background: #374151; }
+.bg-red-600 { background: #dc2626; }
+.bg-amber-600 { background: #d97706; }
+.bg-emerald-600 { background: #059669; }
+.bg-blue-600 { background: #2563eb; }
+
