@@ -88,7 +88,12 @@ export default function Page() {
     }).catch((err) => console.error('[v0] Auth session check failed:', err))
     const { data } = getSupabase().auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_OUT') { setPlayer(null); setScreen('intro') }
-      if (event === 'SIGNED_IN' && session?.user) window.location.reload()
+      if (event === 'SIGNED_IN' && session?.user) {
+        getOrCreatePlayerForUser(session.user).then(async (nextPlayer) => {
+          if (!active) return
+          setPlayer(nextPlayer); setIsGuest(false); await refreshPlayerData(nextPlayer.id); setScreen('menu')
+        }).catch((err) => console.error('[v0] Sign-in player setup failed:', err))
+      }
     })
     return () => { active = false; data.subscription.unsubscribe() }
   }, [refreshPlayerData])
