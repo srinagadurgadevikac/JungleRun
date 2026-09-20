@@ -198,22 +198,6 @@ export function GameCanvas({ isActive, isPaused, onGameOver }: GameCanvasProps) 
         return obj.y < canvas.height + 100
       })
 
-      // Check if lion caught player
-      if (playerY - gameStateRef.current.lionDistance < GAME_CONFIG.LION_CATCH_DISTANCE) {
-        onGameOver('CAUGHT BY THE LION!', {
-          score: calculateScore(
-            gameStateRef.current.distance,
-            gameStateRef.current.coins,
-            gameStateRef.current.obstaclesAvoided
-          ),
-          coins: gameStateRef.current.coins,
-          distance: gameStateRef.current.distance,
-          time: Math.floor(gameStateRef.current.time),
-          obstaclesAvoided: gameStateRef.current.obstaclesAvoided,
-        })
-        return
-      }
-
       // Increase speed gradually
       gameStateRef.current.speed = getNextGameSpeed(
         gameStateRef.current.speed,
